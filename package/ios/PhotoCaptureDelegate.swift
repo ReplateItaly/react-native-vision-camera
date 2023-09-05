@@ -25,6 +25,7 @@ class PhotoCaptureDelegate: NSObject, AVCapturePhotoCaptureDelegate {
 
   func photoOutput(_: AVCapturePhotoOutput, willCapturePhotoFor _: AVCaptureResolvedPhotoSettings) {
     if !enableShutterSound {
+        print("disabled shutter sound")
       // disable system shutter sound (see https://stackoverflow.com/a/55235949/5281431)
       AudioServicesDisposeSystemSoundID(1108)
     }
@@ -40,7 +41,7 @@ class PhotoCaptureDelegate: NSObject, AVCapturePhotoCaptureDelegate {
     }
 
     let error = ErrorPointer(nilLiteral: ())
-    guard let tempFilePath = RCTTempFilePath("jpeg", error)
+    guard let tempFilePath = RCTTempFilePath("hevc", error)
     else {
       promise.reject(error: .capture(.createTempFileError), cause: error?.pointee)
       return
@@ -54,6 +55,7 @@ class PhotoCaptureDelegate: NSObject, AVCapturePhotoCaptureDelegate {
 
     do {
       try data.write(to: url)
+      let depthData = photo.depthData
       let exif = photo.metadata["{Exif}"] as? [String: Any]
       let width = exif?["PixelXDimension"]
       let height = exif?["PixelYDimension"]
@@ -63,6 +65,7 @@ class PhotoCaptureDelegate: NSObject, AVCapturePhotoCaptureDelegate {
 
       promise.resolve([
         "path": tempFilePath,
+        "depthData": depthData,
         "width": width as Any,
         "height": height as Any,
         "orientation": orientation,

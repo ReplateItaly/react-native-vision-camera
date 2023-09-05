@@ -25,8 +25,8 @@ extension CameraView {
       ReactLogger.log(level: .info, message: "Capturing photo...")
 
       // Create photo settings
-      let photoSettings = AVCapturePhotoSettings()
-
+      let photoSettings = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.hevc])
+        
       // default, overridable settings if high quality capture was enabled
       if self.enableHighQualityPhotos?.boolValue == true {
         // TODO: On iOS 16+ this will be removed in favor of maxPhotoDimensions.
@@ -49,7 +49,9 @@ extension CameraView {
       let enableShutterSound = options["enableShutterSound"] as? Bool ?? true
 
       // depth data
-      photoSettings.isDepthDataDeliveryEnabled = photoOutput.isDepthDataDeliveryEnabled
+        print("Depth data: " + String(photoOutput.isDepthDataDeliverySupported))
+        photoOutput.isDepthDataDeliveryEnabled = photoOutput.isDepthDataDeliverySupported
+      photoSettings.isDepthDataDeliveryEnabled = photoOutput.isDepthDataDeliverySupported
       if #available(iOS 12.0, *) {
         photoSettings.isPortraitEffectsMatteDeliveryEnabled = photoOutput.isPortraitEffectsMatteDeliveryEnabled
       }
