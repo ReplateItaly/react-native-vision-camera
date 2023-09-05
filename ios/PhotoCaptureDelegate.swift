@@ -25,7 +25,6 @@ class PhotoCaptureDelegate: NSObject, AVCapturePhotoCaptureDelegate {
 
   func photoOutput(_: AVCapturePhotoOutput, willCapturePhotoFor _: AVCaptureResolvedPhotoSettings) {
     if !enableShutterSound {
-        print("disabled shutter sound")
       // disable system shutter sound (see https://stackoverflow.com/a/55235949/5281431)
       AudioServicesDisposeSystemSoundID(1108)
     }
@@ -41,7 +40,7 @@ class PhotoCaptureDelegate: NSObject, AVCapturePhotoCaptureDelegate {
     }
 
     let error = ErrorPointer(nilLiteral: ())
-    guard let tempFilePath = RCTTempFilePath("heif", error)
+    guard let tempFilePath = RCTTempFilePath("jpeg", error)
     else {
       promise.reject(error: .capture(.createTempFileError), cause: error?.pointee)
       return
