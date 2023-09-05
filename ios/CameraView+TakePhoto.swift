@@ -23,10 +23,15 @@ extension CameraView {
       }
 
       ReactLogger.log(level: .info, message: "Capturing photo...")
-
+        
+        print(self.photoOutput?.availablePhotoFileTypes)
+        print(self.photoOutput?.availablePhotoCodecTypes)
+        print(self.photoOutput?.availablePhotoPixelFormatTypes)
+        print(self.photoOutput?.availableRawPhotoFileTypes)
+        print(self.photoOutput?.availableRawPhotoPixelFormatTypes)
       // Create photo settings
-      let photoSettings = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.heif])
-        photoSettings.processedFileType = AVFileType.heif
+        let photoSettings = AVCapturePhotoSettings()
+        //photoSettings.processedFileType = AVFileType.heif
         
       // default, overridable settings if high quality capture was enabled
       if self.enableHighQualityPhotos?.boolValue == true {
