@@ -41,7 +41,7 @@ class PhotoCaptureDelegate: NSObject, AVCapturePhotoCaptureDelegate {
     }
 
     let error = ErrorPointer(nilLiteral: ())
-    guard let tempFilePath = RCTTempFilePath("hevc", error)
+    guard let tempFilePath = RCTTempFilePath("heif", error)
     else {
       promise.reject(error: .capture(.createTempFileError), cause: error?.pointee)
       return
