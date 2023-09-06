@@ -30,7 +30,7 @@ extension CameraView {
         print(self.photoOutput?.availableRawPhotoFileTypes)
         print(self.photoOutput?.availableRawPhotoPixelFormatTypes)
       // Create photo settings
-        let photoSettings = AVCapturePhotoSettings(rawPixelFormatType: AVFileType.heic, processedFormat: [AVVideoCodecKey: AVVideoCodecType.hevc])
+        let photoSettings = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.hevc])
         //photoSettings.processedFileType = AVFileType.heif
         
       // default, overridable settings if high quality capture was enabled
