@@ -23,14 +23,14 @@ extension CameraView {
       }
 
       ReactLogger.log(level: .info, message: "Capturing photo...")
-        
+        print("[ReplateCamera] Formats:")
         print(self.photoOutput?.availablePhotoFileTypes)
         print(self.photoOutput?.availablePhotoCodecTypes)
         print(self.photoOutput?.availablePhotoPixelFormatTypes)
         print(self.photoOutput?.availableRawPhotoFileTypes)
         print(self.photoOutput?.availableRawPhotoPixelFormatTypes)
       // Create photo settings
-        let photoSettings = AVCapturePhotoSettings()
+        let photoSettings = AVCapturePhotoSettings(rawPixelFormatType: AVFileType.heic, processedFormat: [AVVideoCodecKey: AVVideoCodecType.hevc])
         //photoSettings.processedFileType = AVFileType.heif
         
       // default, overridable settings if high quality capture was enabled
@@ -55,7 +55,8 @@ extension CameraView {
       let enableShutterSound = options["enableShutterSound"] as? Bool ?? true
 
       // depth data
-        print("Depth data: " + String(photoOutput.isDepthDataDeliverySupported))
+        print("[ReplateCamera] Depth data: ")
+        print(photoOutput.isDepthDataDeliverySupported)
         photoOutput.isDepthDataDeliveryEnabled = photoOutput.isDepthDataDeliverySupported
       photoSettings.isDepthDataDeliveryEnabled = photoOutput.isDepthDataDeliverySupported
       if #available(iOS 12.0, *) {
