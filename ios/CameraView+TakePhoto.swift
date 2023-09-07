@@ -58,7 +58,8 @@ extension CameraView {
         print("[ReplateCamera] Depth data: ")
         print(photoOutput.isDepthDataDeliverySupported)
         photoOutput.isDepthDataDeliveryEnabled = photoOutput.isDepthDataDeliverySupported
-      photoSettings.isDepthDataDeliveryEnabled = photoOutput.isDepthDataDeliverySupported
+        photoSettings.isDepthDataDeliveryEnabled = photoOutput.isDepthDataDeliverySupported
+        photoSettings.embedsDepthDataInPhoto = photoOutput.isDepthDataDeliverySupported
       if #available(iOS 12.0, *) {
         photoSettings.isPortraitEffectsMatteDeliveryEnabled = photoOutput.isPortraitEffectsMatteDeliveryEnabled
       }

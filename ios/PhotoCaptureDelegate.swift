@@ -61,10 +61,10 @@ class PhotoCaptureDelegate: NSObject, AVCapturePhotoCaptureDelegate {
       let exifOrientation = photo.metadata[kCGImagePropertyOrientation as String] as? Int ?? 0
       let orientation = getOrientation(forExifOrientation: exifOrientation)
       let isMirrored = getIsMirrored(forExifOrientation: exifOrientation)
-
+      print(depthData)
       promise.resolve([
         "path": tempFilePath,
-        "depthData": depthData,
+        //"depthData": depthData,
         "width": width as Any,
         "height": height as Any,
         "orientation": orientation,
