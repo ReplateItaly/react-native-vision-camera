@@ -1,5 +1,5 @@
 {
-  "name": "react-native-vision-camera",
+  "name": "@replate/react-native-vision-camera",
   "version": "3.1.1",
   "description": "The Camera library that sees the vision.",
   "main": "lib/commonjs/index",
@@ -69,7 +69,7 @@
   },
   "homepage": "https://react-native-vision-camera.com/",
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
+    "registry": "https://npm.pkg.jetbrains.space/replate/p/manager/npm/"
   },
   "devDependencies": {
     "@expo/config-plugins": "^7.2.5",

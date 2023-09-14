@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension CameraView {
   private func rotateFrameSize(frameSize: CGSize, orientation: UIInterfaceOrientation) -> CGSize {
@@ -76,7 +77,7 @@ extension CameraView {
         try device.lockForConfiguration()
 
         device.focusPointOfInterest = normalizedPoint
-        device.focusMode = .continuousAutoFocus
+        device.focusMode = .locked
 
         if device.isExposurePointOfInterestSupported {
           device.exposurePointOfInterest = normalizedPoint
