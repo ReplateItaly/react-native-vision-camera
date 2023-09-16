@@ -77,7 +77,7 @@ extension CameraView {
         try device.lockForConfiguration()
 
         device.focusPointOfInterest = normalizedPoint
-        device.focusMode = .locked
+        device.focusMode = .autoFocus
 
         if device.isExposurePointOfInterestSupported {
           device.exposurePointOfInterest = normalizedPoint
@@ -85,6 +85,12 @@ extension CameraView {
         }
 
         device.unlockForConfiguration()
+          // Lock the focus after setting it.
+          if device.isFocusModeSupported(.locked) {
+              try device.lockForConfiguration()
+              device.focusMode = .locked
+              device.unlockForConfiguration()
+          }
         return nil
       } catch {
         throw CameraError.device(DeviceError.configureError)
