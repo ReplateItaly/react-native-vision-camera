@@ -86,11 +86,11 @@ extension CameraView {
 
         device.unlockForConfiguration()
           // Lock the focus after setting it.
-          if device.isFocusModeSupported(.locked) {
-              try device.lockForConfiguration()
-              device.focusMode = .locked
-              device.unlockForConfiguration()
-          }
+//          if device.isFocusModeSupported(.locked) {
+//              try device.lockForConfiguration()
+//              device.focusMode = .locked
+//              device.unlockForConfiguration()
+//          }
         return nil
       } catch {
         throw CameraError.device(DeviceError.configureError)
