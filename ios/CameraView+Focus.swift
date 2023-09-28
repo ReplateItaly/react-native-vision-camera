@@ -74,20 +74,22 @@ extension CameraView {
       let normalizedPoint = captureDevicePointConverted(fromLayerPoint: point)
 
       do {
+        do {
         try device.lockForConfiguration()
-
-        device.focusPointOfInterest = normalizedPoint
+        device.focusPointOfInterest = CGPoint(x: 0.5, y: 0.5)
         device.focusMode = .autoFocus
 
         if device.isExposurePointOfInterestSupported {
-          device.exposurePointOfInterest = normalizedPoint
+          device.exposurePointOfInterest = CGPoint(x: 0.5, y: 0.5)
           device.exposureMode = .continuousAutoExposure
         }
+      print("Update rnvc version")
 
         device.unlockForConfiguration()
-          // Lock the focus after setting it.
+//          // Lock the focus after setting it.
 //          if device.isFocusModeSupported(.locked) {
 //              try device.lockForConfiguration()
+//              device.focusPointOfInterest = CGPoint(x: 0.5, y: 0.5)
 //              device.focusMode = .locked
 //              device.unlockForConfiguration()
 //          }
