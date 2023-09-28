@@ -74,7 +74,7 @@ extension CameraView {
       let normalizedPoint = captureDevicePointConverted(fromLayerPoint: point)
 
       do {
-        do {
+        //do {
         try device.lockForConfiguration()
         device.focusPointOfInterest = CGPoint(x: 0.5, y: 0.5)
         device.focusMode = .autoFocus
@@ -83,7 +83,6 @@ extension CameraView {
           device.exposurePointOfInterest = CGPoint(x: 0.5, y: 0.5)
           device.exposureMode = .continuousAutoExposure
         }
-      print("Update rnvc version")
 
         device.unlockForConfiguration()
 //          // Lock the focus after setting it.
